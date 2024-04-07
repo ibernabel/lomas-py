@@ -1,0 +1,4 @@
+asgiref==3.8.1
+Django==5.0.3
+django-adminlte3 @ git+https://github.com/d-demirci/django-adminlte3@4719a50686e798e4724c97f89d6e00c3581a5321
+sqlparse==0.4.4
