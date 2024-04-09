@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-#from businessmanagement.models import Department
 
 # Create your models here.
 
@@ -78,7 +77,6 @@ class PersonPhone(models.Model):
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     person_id = models.ForeignKey(Person, on_delete=models.CASCADE)
-    #department_id = models.ForeignKey(Department, on_delete=models.DO_NOTHING)
     NID = models.CharField(max_length=100)
     create_at = models.DateTimeField(auto_now_add=True)
     update_at = models.DateTimeField(null=True, blank=True)

@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
-#from usermanagement.models import Address, Phone
-from usermanagement.models import Address, Phone
+# from usermanagement.models import Address, Phone
+from usermanagement.models import Address, Phone, UserProfile
 
 # Create your models here.
 
@@ -93,3 +93,14 @@ class Department(models.Model):
 
     def __str__(self) -> str:
         return f"{self.name}"
+
+
+class UserDepartment(models.Model):
+    userprofile = models.OneToOneField(UserProfile, on_delete=models.CASCADE)
+    department_id = models.ForeignKey(Department, on_delete=models.DO_NOTHING)
+    create_at = models.DateTimeField(auto_now_add=True)
+    update_at = models.DateTimeField(null=True, blank=True)
+    update_by = models.CharField(max_length=100)
+
+    class Meta:
+        verbose_name_plural = "usersdepartments"
