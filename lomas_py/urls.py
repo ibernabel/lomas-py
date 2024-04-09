@@ -21,5 +21,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('dashboard.urls')),
     path('', include('loan_application.urls')),
+    path('', include('usermanagement.urls')),
+    path('', include('businessmanagement.urls')),
     #path('', include('django_adminlte3.urls')),
 ]
