@@ -14,7 +14,7 @@ class Phone(models.Model):
     update_by = models.CharField(max_length=100)
 
     class Meta:
-        verbose_name_plural = "phones"
+        db_table = "phones"
 
     def __str__(self) -> str:
         return f"Phone: {self.phone_number}"
@@ -33,7 +33,7 @@ class Address(models.Model):
     update_by = models.CharField(max_length=100)
 
     class Meta:
-        verbose_name_plural = "addresses"
+        db_table = "addresses"
 
     def __str__(self) -> str:
         return f"{self.address_line}"
@@ -65,6 +65,9 @@ class PersonAddress(models.Model):
     update_at = models.DateTimeField(null=True, blank=True)
     update_by = models.CharField(max_length=100)
 
+    class Meta:
+        db_table = "person_addresses"
+
 
 class PersonPhone(models.Model):
     person_id = models.ForeignKey(Person, on_delete=models.CASCADE)
@@ -73,10 +76,13 @@ class PersonPhone(models.Model):
     update_at = models.DateTimeField(null=True, blank=True)
     update_by = models.CharField(max_length=100)
 
+    class Meta:
+        db_table = "person_phones"
+
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    person_id = models.ForeignKey(Person, on_delete=models.CASCADE)
+    person_id = models.OneToOneField(Person, on_delete=models.CASCADE)
     NID = models.CharField(max_length=100)
     create_at = models.DateTimeField(auto_now_add=True)
     update_at = models.DateTimeField(null=True, blank=True)
@@ -91,7 +97,7 @@ class Role(models.Model):
     update_by = models.CharField(max_length=100)
 
     class Meta:
-        verbose_name_plural = "roles"
+        db_table = "roles"
 
     def __str__(self) -> str:
         return f"{self.name}"
@@ -105,7 +111,7 @@ class UserRole(models.Model):
     update_by = models.CharField(max_length=100)
 
     class Meta:
-        verbose_name_plural = "users_roles"
+        db_table = "users_roles"
 
 
 class Permission(models.Model):
@@ -116,7 +122,7 @@ class Permission(models.Model):
     update_by = models.CharField(max_length=100)
 
     class Meta:
-        verbose_name_plural = "permissions"
+        db_table = "permissions"
 
     def __str__(self) -> str:
         return f"{self.name}"
@@ -130,4 +136,4 @@ class RolePermission(models.Model):
     update_by = models.CharField(max_length=100)
 
     class Meta:
-        verbose_name_plural = "roles_permissions"
+        db_table = "roles_permissions"
